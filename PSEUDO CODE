@@ -1,0 +1,21 @@
+BFS (Breadth-First Search) – Pseudocode:
+BFS(Graph, startNode):
+    create an empty Queue Q
+    mark startNode as visited
+    enqueue startNode into Q
+    while Q is not empty:
+        currentNode ← dequeue Q
+        print currentNode
+        for each adjacentNode of currentNode:
+            if adjacentNode is not visited:
+                mark adjacentNode as visited
+                enqueue adjacentNode into Q
+
+DFS (Depth-First Search) – Pseudocode:
+DFS(Graph, startNode):
+    mark startNode as visited
+    print startNode
+
+    for each adjacentNode of startNode:
+        if adjacentNode is not visited:
+            DFS(Graph, adjacentNode)
