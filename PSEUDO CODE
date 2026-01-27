@@ -11,6 +11,7 @@ BFS(Graph, startNode):
                 mark adjacentNode as visited
                 enqueue adjacentNode into Q
 
+DFS:
 DFS (Depth-First Search) – Pseudocode:
 DFS(Graph, startNode):
     mark startNode as visited
@@ -19,3 +20,20 @@ DFS(Graph, startNode):
     for each adjacentNode of startNode:
         if adjacentNode is not visited:
             DFS(Graph, adjacentNode)
+
+MIN-MAx:
+MINIMAX(node, depth, isMaxPlayer):
+    IF node is a terminal node OR depth = 0:
+        RETURN value of node
+    IF isMaxPlayer = TRUE:
+        bestValue ← -∞
+        FOR each child of node:
+            value ← MINIMAX(child, depth - 1, FALSE)
+            bestValue ← MAX(bestValue, value)
+        RETURN bestValue
+    ELSE:
+        bestValue ← +∞
+        FOR each child of node:
+            value ← MINIMAX(child, depth - 1, TRUE)
+            bestValue ← MIN(bestValue, value)
+        RETURN bestValue
