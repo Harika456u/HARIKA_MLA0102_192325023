@@ -37,3 +37,26 @@ MINIMAX(node, depth, isMaxPlayer):
             value ← MINIMAX(child, depth - 1, TRUE)
             bestValue ← MIN(bestValue, value)
         RETURN bestValue
+
+Alpha–Beta Pruning – Pseudocode:
+ALPHABETA(node, depth, α, β, isMaxPlayer):
+    IF node is a terminal node OR depth = 0:
+        RETURN value of node
+    IF isMaxPlayer = TRUE:
+        value ← -∞
+        FOR each child of node:
+            value ← MAX(value,
+                         ALPHABETA(child, depth - 1, α, β, FALSE))
+            α ← MAX(α, value)
+            IF α ≥ β:
+                BREAK   // β cut-off (pruning)
+        RETURN value
+    ELSE:
+        value ← +∞
+        FOR each child of node:
+            value ← MIN(value,
+                         ALPHABETA(child, depth - 1, α, β, TRUE))
+            β ← MIN(β, value)
+            IF β ≤ α:
+                BREAK   // α cut-off (pruning)
+        RETURN value
