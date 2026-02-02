@@ -84,3 +84,83 @@ ID3(Dataset S, Attribute list A, Target attribute C)
             Recursively call:
             ID3(Sv, A − {Amax}, C)
 8. Return the constructed decision tree
+
+Algorithm Greedy_Best_First_Search(start, goal)
+
+1. Create an OPEN list (priority queue)
+2. Create a CLOSED list (visited)
+
+3. Insert start into OPEN with priority = h(start)
+
+4. While OPEN is not empty
+      a. Remove node n from OPEN with lowest h(n)
+      b. If n = goal
+            return SUCCESS and path
+      c. Add n to CLOSED
+      d. For each successor s of n
+            If s not in OPEN and not in CLOSED
+                  Set parent of s = n
+                  Insert s into OPEN with priority = h(s)
+
+5. Return FAILURE
+
+
+Algorithm Water_Jug_Problem(X, Y, target)
+
+1. Initialize state (0, 0)
+2. Create a queue
+3. Create a visited set
+
+4. Enqueue initial state (0, 0)
+
+5. While queue is not empty
+      a. Dequeue current state (a, b)
+      b. If a = target or b = target
+            return SUCCESS
+
+      c. Generate all possible next states:
+            - Fill Jug1: (X, b)
+            - Fill Jug2: (a, Y)
+            - Empty Jug1: (0, b)
+            - Empty Jug2: (a, 0)
+            - Pour Jug1 → Jug2
+            - Pour Jug2 → Jug1
+
+      d. For each new state
+            If not visited
+                  Mark visited
+                  Enqueue state
+
+6. Return FAILURE
+
+Algorithm A_Star_Search(start, goal)
+
+1. Create OPEN list (priority queue)
+2. Create CLOSED list
+
+3. g(start) = 0
+4. f(start) = g(start) + h(start)
+5. Insert start into OPEN
+
+6. While OPEN is not empty
+      a. Remove node n from OPEN with lowest f(n)
+      b. If n = goal
+            return SUCCESS and path
+      c. Add n to CLOSED
+
+      d. For each successor s of n
+            temp_g = g(n) + cost(n, s)
+
+            If s not in OPEN and not in CLOSED
+                  parent(s) = n
+                  g(s) = temp_g
+                  f(s) = g(s) + h(s)
+                  Insert s into OPEN
+
+            Else if temp_g < g(s)
+                  parent(s) = n
+                  g(s) = temp_g
+                  f(s) = g(s) + h(s)
+
+7. Return FAILURE
+
