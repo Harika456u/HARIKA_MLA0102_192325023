@@ -60,3 +60,27 @@ ALPHABETA(node, depth, α, β, isMaxPlayer):
             IF β ≤ α:
                 BREAK   // α cut-off (pruning)
         RETURN value
+
+DECISION TREE:
+ID3(Dataset S, Attribute list A, Target attribute C)
+1. If all tuples in S belong to the same class C
+      Return a leaf node with that class
+2. If A is empty
+      Return a leaf node with the majority class in S
+3. Compute Entropy of S:
+      Entropy(S) = − Σ p(c) log2 p(c)
+4. For each attribute Ai in A
+      a) Partition S based on values of Ai
+      b) Compute Entropy for each partition
+      c) Compute Information Gain:
+            IG(S, Ai) = Entropy(S) − Σ (|Sv| / |S|) × Entropy(Sv)
+5. Select attribute Amax with maximum Information Gain
+6. Create a decision node that splits on Amax
+7. For each value v of Amax
+      a) Create subset Sv of S where Amax = v
+      b) If Sv is empty
+            Attach a leaf node with majority class of S
+         Else
+            Recursively call:
+            ID3(Sv, A − {Amax}, C)
+8. Return the constructed decision tree
